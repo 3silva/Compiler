@@ -131,16 +131,16 @@ private:
 
 int main() {
     std::string input;
-    std::cout << "Digite uma expressão: ";
+    std::cout << "Enter an expression: ";
     std::getline(std::cin, input);
 
     try {
         Lexer lexer(input);
         Parser parser(lexer);
         int result = parser.parse();
-        std::cout << "Resultado: " << result << std::endl;
+        std::cout << "Result: " << result << std::endl;
     } catch (const std::runtime_error& e) {
-        std::cerr << "Erro: " << e.what() << std::endl;
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 
     return 0;
