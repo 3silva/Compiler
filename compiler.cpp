@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <algorithm> // Necessário para std::all_of
 
 enum class Token {
     Number,
@@ -113,7 +114,11 @@ private:
                 result *= factor();
             } else {
                 eat(Token::Divide);
-                result /= factor();
+                int divisor = factor();
+                if (divisor == 0) {
+                    throw std::runtime_error("Error: Division by zero");
+                }
+                result /= divisor;
             }
         }
         return result;
@@ -133,6 +138,11 @@ int main() {
     std::string input;
     std::cout << "Enter an expression: ";
     std::getline(std::cin, input);
+
+    if (input.empty() || std::all_of(input.begin(), input.end(), ::isspace)) {
+        std::cerr << "Error: Input cannot be empty." << std::endl;
+        return 1;
+    }
 
     try {
         Lexer lexer(input);
