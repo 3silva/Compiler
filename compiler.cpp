@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include <cctype>
-#include <algorithm> // Necessário para std::all_of
+#include <algorithm>
 
 enum class Token {
     Number,
